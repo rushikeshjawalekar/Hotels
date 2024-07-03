@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 const colors = require("colors");
+require("dotenv").config();
+const mongoURL = process.env.mongoURL;
 mongoose
-  .connect("mongodb://127.0.0.1:27017/MyHome")
+  .connect(mongoURL)
   .then(() => {
     console.log("Connected Successfully to Mongodb".green);
   })
-  .catch(() => {
+  .catch((err) => {
     console.log("Oh no some Error Happened".red);
+    console.log(err);
   });
 
 module.exports = mongoose;
