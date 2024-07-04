@@ -3,6 +3,16 @@ const app = express();
 const colors = require("colors");
 require("dotenv").config();
 
+// Middleware Function
+const logRequest = (req, res, next) => {
+  console.log(
+    `${new Date().toLocaleString()} Request Made to :${req.originalUrl}`
+  );
+  next();
+};
+
+app.use(logRequest);
+// ends here
 // importing
 const mongoose = require("./dbConnection");
 const Decor = require("./models/decor");
